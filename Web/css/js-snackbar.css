@@ -73,9 +73,11 @@
     display: inline-flex;
     box-sizing: border-box;
     border-radius: 3px;
+    border-right: 3px solid #b90909;
+
     color: #eee;
     font-size: 16px;
-    background-color: #262626;
+    background-color: rgba(30,30,30,0.95);
     vertical-align: bottom;
     box-shadow: 0 0 4px 0 black;
     margin: 0 10px;

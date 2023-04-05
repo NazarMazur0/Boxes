@@ -37,16 +37,13 @@
             <div class="collapse navbar-collapse " id="navbarExample01">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item active">
-                        <a class="nav-link text-light" aria-current="page" href="#home">Home <i class="bi bi-house"></i></a>
+                        <a class="nav-link text-light" aria-current="page" href="index.html">Головна<i class="bi bi-house"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#features">Features <i class="bi bi-card-list"></i></a>
+                        <a class="nav-link text-light" href="#features">Інформація<i class="bi bi-card-list"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" href="#search_link">Search<i class="bi bi-binoculars-fill"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#about">About<i class="bi bi-file-earmark-person-fill"></i></a>
+                        <a class="nav-link text-light" href="#about">Профіль<i class="bi bi-file-earmark-person-fill"></i></a>
                     </li>
                 </ul>
             </div>
@@ -70,22 +67,22 @@ background-color:rgba(255, 255, 255, 0.6);
 ">
 <form>
   <div class="mb-3" >
-    <label style="margin-top: 5%;" for="Name" class="form-label">Ім'я</label>
-    <input type="text"  placeholder="Григорій" class="form-control" id="Name" >
+    <label style="margin-top: 5%;" for="userName" class="form-label">Ім'я</label>
+    <input type="text"  placeholder="Григорій" class="form-control" id="userName" >
 
   </div>
   <div class="mb-3" >
     <label for="Email" class="form-label">Email</label>
-    <input type="email"  placeholder="example@gmail.com" class="form-control" id="Email" aria-describedby="emailHelp">
+    <input type="email"  placeholder="example@gmail.com" class="form-control" id="email" aria-describedby="emailHelp">
     <div id="emailHelp" class="form-text">Ми не будемо передавати вашу електронну адресу третім особам</div>
   </div>
   <div class="mb-3">
     <label for="Phone" class="form-label">Номер телефону</label>
-    <input type="tel" placeholder="+380900900900" class="form-control" id="Phone">
+    <input type="tel" placeholder="0900900900" class="form-control" id="Phone">
   </div>
   <div class="mb-3">
     <label for="Size" class="form-label">Розмір боксу</label>
-    <select class="form-select" aria-label="Default select example" id="size" >
+    <select class="form-select"  aria-label="Default select example" id="size" >
     <option selected>Виберіть зі списку</option>
     <option value="1">Великий</option>
     <option value="2">Середній</option>
@@ -93,22 +90,37 @@ background-color:rgba(255, 255, 255, 0.6);
   </select>
   </div>
   <div class="mb-3">
-    <label for="Time" class="form-label">Час бронювання</label>
-    <input type="text" placeholder="90 днів" class="form-control" id="Time">
-    <div id="timeHelp" class="form-text">Мінімальне бронювання 30 днів , максимальне 1 рік </div>
+    <label for="Period" class="form-label">Період бронювання</label>
+    <select class="form-select" aria-label="Default select example" id="Period" >
+    <option selected>Виберіть зі списку</option>
+    <option value="1">1 Місяць</option>
+    <option value="2">2 Місяці</option>
+    <option value="3">3 Місяці</option>
+    <option value="4">4 Місяці</option>
+    <option value="5">5 Місяців</option>
+    <option value="6">6 Місяців</option>
+    <option value="7">7 Місяць</option>
+    <option value="8">8 Місяців</option>
+    <option value="9">9 Місяців</option>
+    <option value="10">10 Місяців</option>
+    <option value="11">11 Місяців</option>
+    <option value="12">12 Місяців</option>
+  </select>
+    <div id="timeHelp" class="form-text">Мінімальне бронювання 1 місяць , максимальне 1 рік </div>
   </div>
   <div class="mb-3">
-    <label for="Adds" class="form-label">Додаткові побажання</label>
-    <textarea type="text" placeholder="" rows="4" class="form-control" id="Adds"></textarea>
-    <div id="timeHelp" class="form-text">Все що завгодно (Не обов'язкове поле)</div>
+    <label for="wishes" class="form-label">Додаткові побажання</label>
+    <textarea type="text" placeholder="" rows="4" class="form-control" id="wishes"></textarea>
+    <div id="timeHelp" class="form-text">Все що завгодно (до 200 символів)</div>
   </div>
 
 <div class="mb-3 form-check">
-  <input type="checkbox" class="form-check-input" id="exampleCheck1">
-  <label class="form-check-label" for="exampleCheck1">Даю згоду на обробку персональних данних</label>
+  <input type="checkbox" class="form-check-input" id="check">
+  <label class="form-check-label" for="check">Даю згоду на обробку персональних данних</label>
 </div>
-  <button type="submit" class="btn btn-primary" style="margin-bottom: 5%;">Бронювати</button>
+
 </form>
+<button type="" class="btn btn-primary" id="submitbtn" style="margin-bottom: 5%;">Бронювати</button>
 </div>
 
 
@@ -241,5 +253,6 @@ background-color:rgba(255, 255, 255, 0.6);
 <script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/js-snackbar.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
