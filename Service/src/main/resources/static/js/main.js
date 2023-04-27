@@ -1,12 +1,15 @@
 $(document).ready(function () {
 
   let usernameError = true;
+  let userSurnameError = true;
   let emailError = true;
   let phoneError = true;
   let sizeError = true;
   let periodError = true;
   let checkError = true;
   let wishesError = true;
+  let bookingData ={};
+
 
 
   function validateUsername() {
@@ -48,11 +51,61 @@ $(document).ready(function () {
       return false;
     } else {
       usernameError = true;
-      return;
+
     }
+    bookingData.name=usernameValue;
   }
 
-  // Validate Email
+
+    function validateUserSurname() {
+        let userSurnameValue = $("#userSurname").val();
+        if (userSurnameValue.length == "") {
+
+            userSurnameError = false;
+            SnackBar({
+                message:"Прізвище не вказано",
+                timeout:5000,
+                position:'br',
+                fixed:true,
+                width:"20vw",
+                status:"error"
+            });
+            return false;
+        } else if (userSurnameValue.length < 2) {
+            SnackBar({
+                message:"Прізвище занадто коротке",
+                timeout:5000,
+                position:'br',
+                fixed:true,
+                width:"20vw",
+                status:"error"
+            });
+            userSurnameError = false;
+            return false;
+        } else if(userSurnameValue.length > 15) {
+
+            SnackBar({
+                message:"Прізвище занадто довге",
+                timeout:5000,
+                position:'br',
+                fixed:true,
+                width:"20vw",
+                status:"error"
+            });
+            userSurnameError = false;
+            return false;
+        } else {
+            userSurnameError = true;
+
+        }
+        bookingData.surname=userSurnameValue;
+    }
+
+
+
+
+
+    // Validate Email
   function validateEmail(){
   const email = $("#email");
 
@@ -68,12 +121,11 @@ $(document).ready(function () {
        status:"error"
      });
      emailError = false;
-     return;
     }
     else
     if (regex.test(emailVal)) {
       emailError = true;
-      return;
+      bookingData.email=emailVal;
     }
     else{
       SnackBar({
@@ -85,15 +137,14 @@ $(document).ready(function () {
        status:"error"
      });
       emailError = false;
-      return;
     }
 
-  return;
+
 }
 
 function validatePhone() {
-  var regex  = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
-  const phone = $("#Phone");
+    const regex = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    let phone = $("#Phone");
   let phoneVal=phone.val();
   if(phoneVal.length == ""){
     SnackBar({
@@ -105,11 +156,10 @@ function validatePhone() {
      status:"error"
    });
     phoneError = false;
-    return;
   }
   if(regex.test(phoneVal)){
     phoneError = true;
-    return;
+    bookingData.phone=phoneVal;
   } else  {
     SnackBar({
      message:"Неправильний номер телефону",
@@ -120,16 +170,15 @@ function validatePhone() {
      status:"error"
    });
     phoneError = false;
-    return;
   }
-  return
+
 }
 
 function validateSize() {
   let sizeVal = $("#size").val();
   if(sizeVal >= 1&&sizeVal<=3){
   sizeError = true;
-  return;
+  bookingData.size=sizeVal;
   }
   else {
     SnackBar({
@@ -141,14 +190,15 @@ function validateSize() {
      status:"error"
    });
    sizeError = false;
-   return;
+
   }
+
 }
 function validatePeriod() {
   let periodVal = $("#Period").val();
   if(periodVal >= 1&&periodError<=12){
   periodError = true;
-  return;
+  bookingData.period=periodVal;
   }
   else {
     SnackBar({
@@ -160,13 +210,12 @@ function validatePeriod() {
      status:"error"
    });
    periodError = false;
-   return;
   }
 }
 function validateCheck() {
   if($("#check").prop('checked') ){
   checkError = true;
-  return;
+  bookingData.check=true;
   }
   else {
     SnackBar({
@@ -178,7 +227,6 @@ function validateCheck() {
      status:"error"
    });
   checkError = false;
-   return;
   }
 }
 function validateWishes() {
@@ -194,18 +242,41 @@ function validateWishes() {
      status:"error"
    });
    wishesError = false;
-   return;
   }
   else {
     wishesError = true;
-    return;
+    bookingData.wishes=wishesVal;
   }
 }
 
+function requestBooking(bookingData){
+      console.log(bookingData);
+  let request = $.ajax({
+    url: "http://localhost:8080/api/newBooking",
+    type: "POST",
+    contentType:"application/json",
+    dataType: "json",
+    data: JSON.stringify(bookingData),
+    success: function(response) {
+        SnackBar({
+            message:"Ваш запит прийнятий",
+            timeout:5000,
+            position:'br',
+            fixed:true,
+            width:"20vw",
+            status:"Success"
+        });
+      },
+      error: function(xhr, status, error) {
+          console.log(xhr.responseText);
+      }
+  });
 
-  // Submit button
+
+}
   $("#submitbtn").click(function () {
     validateUsername();
+    validateUserSurname();
     validateEmail();
     validatePhone();
     validateSize();
@@ -215,6 +286,7 @@ function validateWishes() {
     console.log(usernameError+" "+phoneError+" "+emailError+" "+sizeError+" "+periodError+" "+checkError+" "+wishesError)
     if (
       usernameError &&
+      userSurnameError &&
       phoneError  &&
       emailError &&
       sizeError &&
@@ -223,10 +295,14 @@ function validateWishes() {
       wishesError
     ) {
       console.log("form correct");
-      return true;
+
     } else {
       console.log("form incorrect");
       return false;
     }
+
+    requestBooking(bookingData);
+    return true;
   });
+
 });
