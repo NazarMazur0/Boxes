@@ -1,18 +1,8 @@
 body{
   background: linear-gradient(270deg,#1c4163,#212f3b);
 }
-#search_button {
-  text-align: center;
-  background: #484F60;
-}
- #row_number{
-   margin: auto;
- width: 50%;
- padding: 10px;
-}
-#search{
-  margin-top: 30%;
-  margin-bottom: 50%;
+.boxesInfo{
+    background: #484F60;
 }
 .text{
   position: relative;

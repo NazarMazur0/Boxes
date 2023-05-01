@@ -1,4 +1,4 @@
-package com.boxes.Service
+package com.boxes.Service.controllers
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
