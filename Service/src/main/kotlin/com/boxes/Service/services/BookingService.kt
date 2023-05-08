@@ -83,8 +83,8 @@ class BookingService : Booking {
         for(i in 0 until boxesChunked.size){
             result+="<div class=\"row t-5\">"
             for(j in 0 until boxesChunked[i].size){
-                result+="<div class=\"boxesInfo col sm-2  m-2  rounded border border-black\">\n" +
-                        "            <div class=\"container-sm bg-light rounded m-2\">\n" +
+                result+="<div class=\"boxesInfo  col sm-2  m-2  rounded border border-black\">\n" +
+                        "            <div id=\"box${boxesChunked[i][j].code}Container\" class=\"container-sm bg-light rounded m-2 \">\n" +
                         "                <div class=\"row\">\n" +
                         "                    <div class=\"col\">\n" +
                         "                        <span class=\"code \">${boxesChunked[i][j].code}</span>\n" +
@@ -104,7 +104,7 @@ class BookingService : Booking {
                         "                <div class=\"row\">\n" +
                         "                    <div class=\"col\"></div>\n" +
                         "                    <div class=\"col\">\n" +
-                        "                        <button class=\"btn btn-primary booking_button \">Бронювати</button>\n" +
+                        "                        <button id=\"${boxesChunked[i][j].code}Button\" class=\"BoxButton btn btn-primary booking_button \">Бронювати</button>\n" +
                         "                    </div>\n" +
                         "                    <div class=\"col\"></div>\n" +
                         "                </div>\n" +

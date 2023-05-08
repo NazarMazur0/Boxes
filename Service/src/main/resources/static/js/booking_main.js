@@ -255,25 +255,40 @@ function requestBooking(bookingData){
     url: "http://localhost:8080/api/newBooking",
     type: "POST",
     contentType:"application/json",
-    dataType: "json",
+    dataType: "html",
     data: JSON.stringify(bookingData),
-    success: function(response) {
-        SnackBar({
-            message:"Ваш запит прийнятий",
-            timeout:5000,
-            position:'br',
-            fixed:true,
-            width:"20vw",
-            status:"Success"
-        });
-      },
-      error: function(xhr, status, error) {
+    success : successBooking,
+      error: (xhr, status, error) => {
           console.log(xhr.responseText);
+          console.log(status);
+          console.log(error);
       }
   });
 
 
 }
+
+    function successBooking(response){
+            SnackBar({
+                message:"Запит успішний",
+                timeout:5000,
+                position:'br',
+                fixed:true,
+                width:"20vw",
+                status:"success"
+            });
+
+            $("#mainContainer").hide(1000);
+            setTimeout(()=>$("#mainContainer").html(response),1000);
+            $("#mainContainer").show(1000);
+            $(".BoxButton").bind("click", eventData,function (){
+
+            })
+
+
+
+    }
+
   $("#submitbtn").click(function () {
     validateUsername();
     validateUserSurname();

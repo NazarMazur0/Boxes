@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Booking</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/js-snackbar.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<header id="home">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark " style="position: fixed; z-index:100;top:0; left:0; width:100%;">
+        <div class="container-fluid ">
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarExample01"
+                    aria-controls="navbarExample01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarExample01">
+                <ul class="navbar-nav me-auto sm-2 sm-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" aria-current="page" href="index.html">Головна<i class="bi bi-house"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#features">Інформація<i class="bi bi-card-list"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#about">Профіль<i class="bi bi-file-earmark-person-fill"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+
+</header>
+
+
+
+
+
+
+
+<div class="container-sm w-33" style="margin-top: 15%;
+margin-bottom: 5%;
+background-color:rgba(255, 255, 255, 0.6);
+">
+
+    <h4>Доступні контейнери</h4>
+    <div class="row t-5">
+
+        <div class="col sm-2 ">
+            <div class="container-sm bg-primary text-light rounded m-2">
+                <div class="row">
+                    <div class="col">
+                        <span class="code ">Код</span>
+                    </div>
+                    <div class="col  ">
+                        <span class="size">Розмір</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Ціна</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Адресса</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col sm-2 ">
+            <div class="container-sm bg-primary text-light rounded m-2">
+                <div class="row">
+                    <div class="col">
+                        <span class="code ">Код</span>
+                    </div>
+                    <div class="col  ">
+                        <span class="size">Розмір</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Ціна</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Адресса</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="col sm-2 ">
+            <div class="container-sm bg-primary text-light rounded m-2">
+                <div class="row">
+                    <div class="col">
+                        <span class="code ">Код</span>
+                    </div>
+                    <div class="col  ">
+                        <span class="size">Розмір</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Ціна</span>
+                    </div>
+                    <div class="col">
+                        <span class="price ">Адресса</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div><div class="row t-5"><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">СВ6</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1150</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">СВ7</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1150</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">СВ8</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1150</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div></div><div class="row t-5"><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ24</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ25</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ26</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div></div><div class="row t-5"><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ27</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ28</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ29</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div></div><div class="row t-5"><div class="boxesInfo col sm-2  m-2  rounded border border-black">
+    <div class="container-sm bg-light rounded m-2">
+        <div class="row">
+            <div class="col">
+                <span class="code ">ЗВ30</span>
+            </div>
+            <div class="col  ">
+                <span class="size">великий</span>
+            </div>
+            <div class="col">
+                <span class="price ">1000</span>
+            </div>
+
+        </div>
+    </div>
+    <div class="col sm-2 ">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <button class="btn btn-primary booking_button ">Бронювати</button>
+            </div>
+            <div class="col"></div>
+        </div>
+
+    </div>
+</div><div class="boxesInfo col sm-2  m-2  rounded border border-black"></div><div class="boxesInfo col sm-2  m-2  rounded border border-black"></div></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="bg-dark text-center text-white" id="about">
+    <!-- Grid container -->
+    <div class="container p-4">
+        <!-- Section: Social media -->
+        <section class="sm-4">
+            <a class="btn btn-outline-light btn-floating m-1" href="tel:+380960920894" role="button">
+                <i class="fas fa-phone"></i>
+            </a>
+            <a class="btn btn-outline-light btn-floating m-1" href="mailto:nazar.mazur@ukr.net" role="button">
+                <i class="fas fa-at"></i>
+            </a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://t.me/nazar4367" role="button">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/NazarMazur0?tab=packages" role="button">
+                <i class="fab fa-github"></i>
+            </a>
+        </section>
+        <!-- Section: Social media -->
+
+
+
+        <!-- Section: Text -->
+        <section class="sm-4">
+            <p>
+                Дякую за перегляд!
+            </p>
+        </section>
+        <!-- Section: Text -->
+
+        <!-- Section: Links -->
+        <section class="">
+            <!--Grid row-->
+            <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 sm-4 sm-md-0">
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 sm-4 sm-md-0">
+                    <h5 class="text-uppercase">Використані технології</h5>
+
+                    <ul class="list-unstyled sm-0">
+                        <li>
+                            <a href="https://jquery.com" class="text-info">jQuery</a>
+                        </li>
+                        <li>
+                            <a href="https://getbootstrap.com" class="text-info">Bootstrap</a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/mickelsonmichael/js-snackbar" class="text-info">JS-Snackbar</a>
+                        </li>
+                        <li>
+                            <a href="https://fontawesome.com" class="text-info">Font Awesome</a>
+                        </li>
+                        <li>
+                            <a href="https://fonts.google.com" class="text-info">Google Fonts</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-lg-4 col-md-6 sm-4 sm-md-0">
+                </div>
+                <!--Grid column-->
+            </div>
+            <!--Grid row-->
+        </section>
+        <!-- Section: Links -->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        ©Nazar Mazur 2022
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/js-snackbar.js"></script>
+<script src="js/booking_result_main.js"></script>
+</body>
+</html>
