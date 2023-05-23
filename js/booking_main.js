@@ -7,7 +7,7 @@ let periodError = true;
 let checkError = true;
 let wishesError = true;
 let bookingData ={};
-
+let mainContainer = $("#mainContainer");
 
 $(document).ready(function () { //binding button
 
@@ -319,9 +319,9 @@ function successBooking(response){
                 status:"success"
             });
 
-            $("#mainContainer").hide(1000);
+    mainContainer.hide(1000);
             setTimeout(()=> {
-                    $("#mainContainer").html(response)
+                    mainContainer.html(response)
                     $(".BoxButton").on("click", function (){
                         let id = $(this).attr("id")
                         let code=id.split("Button")[0]
@@ -330,7 +330,7 @@ function successBooking(response){
 
                 }
                 ,1000);
-            $("#mainContainer").show(1000);
+            mainContainer.show(1000);
 
 
 
@@ -343,7 +343,20 @@ function requestBox(code){
         contentType:"application/json",
         dataType: "html",
         data: JSON.stringify(bookingData),
-        success : function (){},
+        success : function (){
+            SnackBar({
+                message:"Заброньовано. Повертаємось на головну ",
+                timeout:5000,
+                position:'br',
+                fixed:true,
+                width:"20vw",
+                status:"success"
+            });
+            mainContainer.hide(600)
+            setTimeout(function (){
+                window.location.href = '/';
+            },2500)
+        },
         error: (xhr, status, error) => {
             SnackBar({
                 message:"Помилка на сервері",
