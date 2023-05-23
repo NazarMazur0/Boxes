@@ -4,6 +4,7 @@ import com.boxes.Service.components.DatabaseDriver
 import com.boxes.Service.models.Box
 import com.boxes.Service.models.BoxBooking
 import com.boxes.Service.models.Client
+import com.boxes.Service.services.interfaces.Booking
 import org.springframework.stereotype.Service
 import java.time.LocalDate
 import java.sql.Date
@@ -134,7 +135,9 @@ class BookingService : Booking {
         localEndDate=  localEndDate.plusDays(1).plusMonths(booking.period.toLong())
 
         sqlEndDate=Date.valueOf(localEndDate)
+        println(sqlEndDate)
         println(localEndDate.toString())
+        println(sqlEndDate)
 
         try {
             DatabaseDriver.findClientByEmail(Client(booking.name, booking.surname, booking.email, booking.phone, false))
@@ -145,7 +148,7 @@ class BookingService : Booking {
         }
         if (clientExist) {
 
-            DatabaseDriver.newOrder(booking.email, booking.code,sqlEndDate.time, booking.period)
+            DatabaseDriver.newOrder(booking.email, booking.code,sqlEndDate, booking.period)
             DatabaseDriver.updateBoxAsBooked(booking.code)
             return "Success"
         } else {
@@ -156,7 +159,7 @@ class BookingService : Booking {
             } catch (e: NoSuchElementException) {
                 println("2ndCath > ${e.message}")
             }
-            DatabaseDriver.newOrder(booking.email, booking.code, localEndDate.toEpochDay(), booking.period)
+            DatabaseDriver.newOrder(booking.email, booking.code, sqlEndDate, booking.period)
             DatabaseDriver.updateBoxAsBooked(booking.code)
             return "Success"
         }

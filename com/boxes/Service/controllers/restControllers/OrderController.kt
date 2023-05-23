@@ -1,6 +1,7 @@
-package com.boxes.Service.controllers
+package com.boxes.Service.controllers.restControllers
 
 import com.boxes.Service.models.EmployeeLogin
+import com.boxes.Service.models.ProcessedOrder
 import com.boxes.Service.services.LoginService
 import com.boxes.Service.services.OrderService
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,5 +18,15 @@ class OrderController(val loginService: LoginService,val orderService: OrderServ
             orderService.findNewOrders()
         else
             "500"
+    }
+    @PostMapping("/acceptOrder")
+    fun acceptedOrder(@RequestBody processedOrder: ProcessedOrder):String{
+        return if( orderService.acceptOrder(processedOrder)) "200"
+        else "500"
+    }
+    @PostMapping("/denyOrder")
+    fun denyOrder(@RequestBody processedOrder: ProcessedOrder):String{
+        return if( orderService.denyOrder(processedOrder)) "200"
+        else "500"
     }
 }

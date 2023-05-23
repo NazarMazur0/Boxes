@@ -1,4 +1,4 @@
-package com.boxes.Service.controllers
+package com.boxes.Service.controllers.restControllers
 
 
 import com.boxes.Service.models.Booking

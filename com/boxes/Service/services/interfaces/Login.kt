@@ -1,4 +1,4 @@
-package com.boxes.Service.services
+package com.boxes.Service.services.interfaces
 
 import com.boxes.Service.models.EmployeeLogin
 

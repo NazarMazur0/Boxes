@@ -1,9 +1,7 @@
 package com.boxes.Service.components
-import com.boxes.Service.models.Box
-import com.boxes.Service.models.Client
-import com.boxes.Service.models.EmployeeLogin
-import com.boxes.Service.models.OrderInfo
+import com.boxes.Service.models.*
 import java.lang.NullPointerException
+import java.sql.Date
 import java.sql.DriverManager
 import java.util.Date as utilDate
 import java.util.NoSuchElementException
@@ -17,13 +15,14 @@ object DatabaseDriver {
         val result  =  mutableListOf<Box>()
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeQuery("   SELECT \n" +
+        val query = "   SELECT \n" +
                 "    B.ID, B.CODE,B.[SIZE],B.BOOKED,B.Price,L.LOCATION_Address \n" +
                 "   FROM [dbo].[Boxes] as B\n" +
                 "   JOIN Locations as L \n" +
                 "   on B.LocationID=L.ID\n" +
                 "   Where \n" +
-                "    [SIZE] like '$size' and Booked =0")
+                "    [SIZE] like '$size' and Booked =0"
+        val resultSet = statement.executeQuery(query)
         println(resultSet)
         while (resultSet.next()) {
             val id = resultSet.getInt("ID")
@@ -43,7 +42,8 @@ object DatabaseDriver {
         var resClient:Client
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeQuery("SELECT * FROM dbo.CLIENTS WHERE EMAIL = '${client.email}'")
+        val query = "SELECT * FROM dbo.CLIENTS WHERE EMAIL = '${client.email}'"
+        val resultSet = statement.executeQuery(query)
         println(resultSet)
         if (resultSet.next()) {
          resClient= Client(resultSet.getString("NAME"),resultSet.getString("SURNAME"),resultSet.getString("EMAIL"),resultSet.getString("PHONE"),resultSet.getBytes("REGULAR").joinToString("") { "%02x".format(it) }.isEmpty())
@@ -62,7 +62,8 @@ object DatabaseDriver {
         var resClient:Client
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeQuery("SELECT * FROM dbo.CLIENTS WHERE PHONE = '${client.phone}'")
+        val query = "SELECT * FROM dbo.CLIENTS WHERE PHONE = '${client.phone}'"
+        val resultSet = statement.executeQuery(query)
         println(resultSet)
         if (resultSet.next()) {
             resClient= Client(resultSet.getString("NAME"),resultSet.getString("SURNAME"),resultSet.getString("EMAIL"),resultSet.getString("PHONE"),resultSet.getBytes("REGULAR").joinToString("") { "%02x".format(it) }.isEmpty())
@@ -81,7 +82,7 @@ object DatabaseDriver {
 
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeUpdate("INSERT INTO dbo.CLIENTS \n" +
+        val query = "INSERT INTO dbo.CLIENTS \n" +
                 "VALUES (\n" +
                 "    (SELECT MAX(ID) + 1 FROM dbo.CLIENTS), \n" +
                 "    '${client.name}',\n" +
@@ -89,7 +90,8 @@ object DatabaseDriver {
                 "    '${client.phone}',\n" +
                 "    0,\n" +
                 "    '${client.email}'\n" +
-                ");\n")
+                ");\n"
+        val resultSet = statement.executeUpdate(query)
         println(resultSet)
         if (resultSet>0) {
             println("Client ADDED")
@@ -103,10 +105,14 @@ object DatabaseDriver {
         connection.close()
         return client
     }
-    fun newOrder(clientEmail:String,boxCode:String,endDate:Long,Period:Int){
+    fun newOrder(clientEmail:String, boxCode:String, endDate: Date, Period:Int){
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeUpdate("INSERT into dbo.ORDERS VALUES ( ((SELECT MAX(ID) FROM dbo.ORDERS)+1) ,(SELECT ID FROM dbo.CLIENTS WHERE EMAIL='${clientEmail}'),0,(SELECT ID FROM dbo.BOXES WHERE CODE='${boxCode}'),GETDATE(),'${sqlDate(endDate)}', ((SELECT Price FROM dbo.BOXES WHERE CODE='${boxCode}')*${Period}),'Нове')")
+        val query =
+            "INSERT into dbo.ORDERS VALUES ( ((SELECT MAX(ID) FROM dbo.ORDERS)+1) ,(SELECT ID FROM dbo.CLIENTS WHERE EMAIL='${clientEmail}'),0,(SELECT ID FROM dbo.BOXES WHERE CODE='${boxCode}'),GETDATE(),'${
+                endDate
+            }', ((SELECT Price FROM dbo.BOXES WHERE CODE='${boxCode}')*${Period}),'Нове')"
+        val resultSet = statement.executeUpdate(query)
         println(resultSet)
         if (resultSet>0) {
             println(  "order added" )
@@ -122,7 +128,10 @@ object DatabaseDriver {
     fun updateBoxAsBooked(boxCode: String){
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeUpdate("UPDATE BOXES  SET BOOKED = 1 WHERE CODE='${boxCode}'")
+        val query = "UPDATE BOXES" +
+                "  SET BOOKED = 1 " +
+                "WHERE CODE='${boxCode}'"
+        val resultSet = statement.executeUpdate(query)
         println(resultSet)
         if (resultSet>0) {
             println(  "boxes booked " )
@@ -138,7 +147,10 @@ object DatabaseDriver {
     fun checkEmployee(login:EmployeeLogin):Boolean{
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeQuery("SELECT PHONE,PASSWORD FROM EMPLOYEE WHERE PHONE='${login.phone}' and PASSWORD='${login.password}'")
+        val query = "SELECT PHONE,PASSWORD" +
+                " FROM EMPLOYEE" +
+                " WHERE PHONE='${login.phone}' and PASSWORD='${login.password}'"
+        val resultSet = statement.executeQuery(query)
         if (resultSet.next()) {
             return resultSet.getString("PHONE")==login.phone&&resultSet.getString("PASSWORD")==login.password
         } else  {
@@ -150,7 +162,12 @@ object DatabaseDriver {
         val resList= mutableListOf<OrderInfo>()
         val connection = DriverManager.getConnection(url)
         val statement = connection.createStatement()
-        val resultSet = statement.executeQuery("SELECT *  FROM ORDERS O JOIN CLIENTS C on O.CLIENTID=C.ID JOIN BOXES B on O.BOXID=B.ID  WHERE STATUS='Нове'")
+        val query = "SELECT *  " +
+                "FROM ORDERS O " +
+                "JOIN CLIENTS C on O.CLIENTID=C.ID " +
+                "JOIN BOXES B on O.BOXID=B.ID  " +
+                "WHERE STATUS='Нове'"
+        val resultSet = statement.executeQuery(query)
         while (resultSet.next()) {
             val name = resultSet.getString("NAME")
             val surname = resultSet.getString("SURNAME")
@@ -169,6 +186,53 @@ object DatabaseDriver {
         statement.close()
         connection.close()
         return resList
+    }
+    fun acceptOrder(processedOrder: ProcessedOrder):Boolean{
+        val resList= mutableListOf<OrderInfo>()
+        val connection = DriverManager.getConnection(url)
+        val statement = connection.createStatement()
+        val query = "UPDATE ORDERS SET STATUS='Активне'," +
+                "EMLOYEEID =( SELECT ID" +
+                " FROM EMPLOYEE " +
+                "WHERE " +
+                "PHONE='${processedOrder.employeePhone}' and PASSWORD='${processedOrder.employeePassword}')"+
+                "WHERE BOXID=(SELECT ID FROM BOXES WHERE CODE='${processedOrder.boxCode}')"
+        val resultSet = statement.executeUpdate(query)
+        return if (resultSet>0) {
+            statement.close()
+            connection.close()
+            true
+        } else {
+            statement.close()
+            connection.close()
+            false
+        }
+
+
+    }
+    fun denyOrder(processedOrder: ProcessedOrder):Boolean{
+        val resList= mutableListOf<OrderInfo>()
+        val connection = DriverManager.getConnection(url)
+        val statement = connection.createStatement()
+        val query = "UPDATE ORDERS SET STATUS='Скасоване'," +
+                "EMLOYEEID =( SELECT ID" +
+                " FROM EMPLOYEE " +
+                "WHERE " +
+                "PHONE=${processedOrder.employeePhone} and PASSWORD='${processedOrder.employeePassword}')" +
+                "WHERE BOXID=(SELECT ID FROM BOXES WHERE CODE='${processedOrder.boxCode}')"
+        val resultSet = statement.executeUpdate(query)
+        return if (resultSet>0) {
+            statement.executeUpdate("UPDATE BOXES SET BOOKED=0 WHERE CODE='${processedOrder.boxCode}'")
+            statement.close()
+            connection.close()
+            true
+        } else {
+            statement.close()
+            connection.close()
+            false
+        }
+
+
     }
 
 }

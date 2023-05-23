@@ -3,10 +3,11 @@ package com.boxes.Service.services
 import com.boxes.Service.models.EmployeeLogin
 import org.springframework.stereotype.Service
 import com.boxes.Service.components.DatabaseDriver
+import com.boxes.Service.services.interfaces.Login
 import java.lang.NullPointerException
 
 @Service
-class LoginService:Login {
+class LoginService: Login {
     override fun checkEmlpoyee(login:EmployeeLogin): Boolean {
         return try {
             DatabaseDriver.checkEmployee(login)
