@@ -2,11 +2,16 @@ package com.boxes.Service.services
 
 import com.boxes.Service.components.DatabaseDriver
 import com.boxes.Service.models.Box
+import com.boxes.Service.models.BoxBooking
+import com.boxes.Service.models.Client
 import org.springframework.stereotype.Service
+import java.time.LocalDate
+import java.sql.Date
+import java.util.NoSuchElementException
 
 @Service
 class BookingService : Booking {
-    override fun findBoxes(booking: com.boxes.Service.models.Booking): String {
+    override fun findUnbookedBoxes(booking: com.boxes.Service.models.Booking): String {
         var result="<h4>Доступні контейнери</h4>\n" +
                 "    <div class=\"row t-5\">\n" +
                 "\n" +
@@ -93,7 +98,7 @@ class BookingService : Booking {
                         "                        <span class=\"size\">${boxesChunked[i][j].size}</span>\n" +
                         "                    </div>\n" +
                         "                    <div class=\"col\">\n" +
-                        "                        <span class=\"price \">${boxesChunked[i][j].price}</span>\n" +
+                        "                        <span class=\"price \">${boxesChunked[i][j].price*booking.period}</span>\n" +
                         "                    </div>\n <div class=\"col\">\n" +
                         "                        <span class=\"price \">${boxesChunked[i][j].location}</span>\n" +
                         "                    </div>" +
@@ -118,5 +123,42 @@ class BookingService : Booking {
         }
 
         return result
+    }
+
+
+
+    override fun bookBox(booking: BoxBooking): String {
+        var clientExist: Boolean
+        var sqlEndDate :Date
+        var localEndDate: LocalDate = LocalDate.now()
+        localEndDate=  localEndDate.plusDays(1).plusMonths(booking.period.toLong())
+
+        sqlEndDate=Date.valueOf(localEndDate)
+        println(localEndDate.toString())
+
+        try {
+            DatabaseDriver.findClientByEmail(Client(booking.name, booking.surname, booking.email, booking.phone, false))
+            clientExist = true
+        } catch (e: NoSuchElementException) {
+            println(e.message)
+            clientExist = false
+        }
+        if (clientExist) {
+
+            DatabaseDriver.newOrder(booking.email, booking.code,sqlEndDate.time, booking.period)
+            DatabaseDriver.updateBoxAsBooked(booking.code)
+            return "Success"
+        } else {
+            println("This is else branch")
+            try {
+               println(DatabaseDriver.insertClient(Client(booking.name, booking.surname, booking.email, booking.phone, false)))
+
+            } catch (e: NoSuchElementException) {
+                println("2ndCath > ${e.message}")
+            }
+            DatabaseDriver.newOrder(booking.email, booking.code, localEndDate.toEpochDay(), booking.period)
+            DatabaseDriver.updateBoxAsBooked(booking.code)
+            return "Success"
+        }
     }
 }
