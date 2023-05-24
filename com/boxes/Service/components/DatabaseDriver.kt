@@ -111,7 +111,7 @@ object DatabaseDriver {
         val query =
             "INSERT into dbo.ORDERS VALUES ( ((SELECT MAX(ID) FROM dbo.ORDERS)+1) ,(SELECT ID FROM dbo.CLIENTS WHERE EMAIL='${clientEmail}'),0,(SELECT ID FROM dbo.BOXES WHERE CODE='${boxCode}'),GETDATE(),'${
                 endDate
-            }', ((SELECT Price FROM dbo.BOXES WHERE CODE='${boxCode}')*${Period}),'Нове')"
+            }', ((SELECT Price FROM dbo.BOXES WHERE CODE='${boxCode}')*${Period}),'Не оброблено')"
         val resultSet = statement.executeUpdate(query)
         println(resultSet)
         if (resultSet>0) {
@@ -166,7 +166,7 @@ object DatabaseDriver {
                 "FROM ORDERS O " +
                 "JOIN CLIENTS C on O.CLIENTID=C.ID " +
                 "JOIN BOXES B on O.BOXID=B.ID  " +
-                "WHERE STATUS='Нове'"
+                "WHERE STATUS='Не оброблено'"
         val resultSet = statement.executeQuery(query)
         while (resultSet.next()) {
             val name = resultSet.getString("NAME")
@@ -234,6 +234,34 @@ object DatabaseDriver {
 
 
     }
+    fun checkClient(email:String):Boolean{
+        val connection = DriverManager.getConnection(url)
+        val statement = connection.createStatement()
+        val query = "SELECT EMAIL from dbo.CLIENTS WHERE EMAIL='${email}'"
+        val resultSet = statement.executeQuery(query)
+        return resultSet.next()
+    }
+    fun getClientOrders(email:String):List<OrderInfo>{
+        val resList = mutableListOf<OrderInfo>()
+        val connection = DriverManager.getConnection(url)
+        val statement = connection.createStatement()
+        val query = "SELECT B.CODE,B.SIZE,O.STATUS,O.SUM,O.START_DATE,O.END_DATE,L.LOCATION_Address FROM ORDERS O JOIN BOXES B on O.BOXID=B.ID JOIN Locations L  on B.LocationID=L.ID WHERE O.CLIENTID = (SELECT ID FROM CLIENTS WHERE EMAIL='${email}')"
+        val resultSet = statement.executeQuery(query)
+        while(resultSet.next()){
+            val locationAddress = resultSet.getString("LOCATION_Address")
+            val code = resultSet.getString("CODE")
+            val size = resultSet.getString("SIZE")
+            val startDate = utilDate(resultSet.getDate("START_DATE").time)
+            val endDate = utilDate(resultSet.getDate("END_DATE").time)
+            val sum = resultSet.getInt("SUM")
+            val status = resultSet.getString("STATUS")
+
+            resList.add(OrderInfo(code = code, size = size, startDate= startDate, endDate= endDate, sum= sum, status= status, locationAddress =locationAddress ))
+
+        }
+    return resList
+    }
+
 
 }
 

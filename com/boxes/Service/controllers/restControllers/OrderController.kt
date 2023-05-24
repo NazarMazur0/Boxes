@@ -1,5 +1,6 @@
 package com.boxes.Service.controllers.restControllers
 
+import com.boxes.Service.models.ClientLogin
 import com.boxes.Service.models.EmployeeLogin
 import com.boxes.Service.models.ProcessedOrder
 import com.boxes.Service.services.LoginService
@@ -28,5 +29,12 @@ class OrderController(val loginService: LoginService,val orderService: OrderServ
     fun denyOrder(@RequestBody processedOrder: ProcessedOrder):String{
         return if( orderService.denyOrder(processedOrder)) "200"
         else "500"
+    }
+    @PostMapping("/getClientOrders")
+    fun getClientOrders(@RequestBody clientLogin: ClientLogin):String{
+        return if(loginService.loginClient(clientLogin)){
+            orderService.getClientOrders(clientLogin.email)
+        } else ""
+
     }
 }

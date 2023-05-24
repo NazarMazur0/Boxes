@@ -17,4 +17,8 @@ class MainController {
     fun returnWorkpage() : String {
         return "workpage.html"
     }
+    @GetMapping("/myorders")
+    fun returnUserPage():String{
+        return "userpage.html"
+    }
 }
