@@ -32,16 +32,10 @@ body{
  .list_item{
    text-align: center;
   color:#3b3c42 ;
-  /* background: linear-gradient(270deg,#f0eab9,#c9a85b); */
+
   background: rgba(240 , 234, 185, 0.7);
 }
 #featuresText{
   width: 95%;
   margin-top: 3%;
 }
-/* .c-picture{
-  width: 80%;
-  height: 60%;
-  object-fit: fill;
-  object-position: -40%,-40%;
-} */

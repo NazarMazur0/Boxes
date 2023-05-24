@@ -13,4 +13,12 @@ class MainController {
     fun returnIndex() : String {
         return "index.html"
     }
+    @GetMapping("/employee")
+    fun returnWorkpage() : String {
+        return "workpage.html"
+    }
+    @GetMapping("/myorders")
+    fun returnUserPage():String{
+        return "userpage.html"
+    }
 }
