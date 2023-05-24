@@ -87,7 +87,7 @@ function requestLogin(){
         dataType: "html",
         data: JSON.stringify(loginData),
         success : function (){
-            setInterval(requestNewOrders ,10000)
+            setInterval(requestNewOrders ,1000)
         },
         error: (xhr, status, error) => {
             SnackBar({
