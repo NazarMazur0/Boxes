@@ -7,18 +7,19 @@ import org.springframework.web.bind.annotation.GetMapping
 class MainController {
     @GetMapping("/booking")
     fun returnBooking() : String {
-     return "booking.html"
+     return "booking"
     }
     @GetMapping("/")
     fun returnIndex() : String {
-        return "index.html"
+        return "index"
     }
+
     @GetMapping("/employee")
     fun returnWorkpage() : String {
-        return "workpage.html"
+        return "workpage"
     }
     @GetMapping("/myorders")
     fun returnUserPage():String{
-        return "userpage.html"
+        return "userpage"
     }
 }

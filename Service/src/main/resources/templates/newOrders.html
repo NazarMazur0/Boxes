@@ -1,0 +1,116 @@
+<div class="row t-5">
+
+  <div class="col lg-4">
+    <div class="container-sm bg-primary text-light rounded m-2">
+      <div class="row">
+        <div class="col">
+          <span class="code">Ім'я</span>
+        </div>
+        <div class="col">
+          <span class="size">Прізвище</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <span class="price">Email</span>
+        </div>
+        <div class="col">
+          <span class="price">Телефон</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col lg-4">
+    <div class="container-sm bg-primary text-light rounded m-2">
+      <div class="row">
+        <div class="col">
+          <span class="code">Код</span>
+        </div>
+        <div class="col">
+          <span class="size">Розмір</span>
+        </div>
+        <div class="col">
+          <span class="price">Сума</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col lg-4">
+    <div class="container-sm bg-primary text-light rounded m-2">
+      <div class="row">
+        <div class="col">
+          <span class="code">Період бронювання</span>
+        </div>
+        <div class="col">
+          <span class="size">Статус</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:each="order : ${orders}">
+  <div id="${order.code}Container" style="background:#35455e" class="container t-5 border border-1 border-info rounded">
+    <div class="row t-5">
+      <div class="col lg-4">
+        <div class="container-sm text-light rounded m-2">
+          <div class="row">
+            <div class="col">
+              <span class="code" th:text="${order.name}">Ім'я</span>
+            </div>
+            <div class="col">
+              <span class="size" th:text="${order.surname}">Прізвище</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <span class="price" th:text="${order.email}">Email</span>
+            </div>
+            <div class="col">
+              <span class="price" th:text="${order.phone}">Телефон</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col lg-4">
+        <div class="container-sm text-light rounded m-2">
+          <div class="row">
+            <div class="col">
+              <span class="code" th:text="${order.code}">Код</span>
+            </div>
+            <div class="col">
+              <span class="size" th:text="${order.size}">Розмір</span>
+            </div>
+            <div class="col">
+              <span class="price" th:text="${order.sum}">Сума</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col lg-4">
+        <div class="container-sm text-light rounded m-2">
+          <div class="row">
+            <div class="col">
+                            <span class="code"
+                                  th:text="${order.startDate.month + 1}/${order.startDate.date}/${order.startDate.year + 1900} &lt;br&gt; ${order.endDate.month + 1}/${order.endDate.date}/${order.endDate.year + 1900}">Період бронювання</span>
+            </div>
+            <div class="col">
+              <span class="size" th:text="${order.status}">Статус</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row t-5">
+      <div class="col col-lg-3"></div>
+      <div class="col col-lg-3">
+        <button th:id="${order.code+'Deny'}" class="DenyButton btn btn-danger">Скасувати</button>
+      </div>
+      <div class="col col-lg-3">
+        <button  th:id="${order.code+'Accept'}" class="AcceptButton btn btn-success">Прийняти</button>
+      </div>
+      <div class="col col-lg-3"></div>
+    </div>
+  </div>
+</div>

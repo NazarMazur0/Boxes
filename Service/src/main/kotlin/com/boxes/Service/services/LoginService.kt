@@ -30,6 +30,7 @@ class LoginService: Login {
             map[email] = code
             true
         } catch (e:Exception){
+            println(e.message)
             false
         }
 
