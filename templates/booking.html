@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Бронювання</title>
+    <link rel="icon" type="image/png" href="img/icons/main_icon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/js-snackbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.css" rel="stylesheet"/>
+
+</head>
+<body>
+<header th:replace="~{header}">
+</header>
+
+
+
+
+
+
+
+<div id="mainContainer" class="container-sm w-33" style="margin-top: 15%;
+margin-bottom: 5%;
+background-color:rgba(255, 255, 255, 0.6);
+border-radius: 15px ;
+">
+    <div class="sm-3" >
+        <h3>Бронювання боксу</h3>
+    </div>
+<form>
+  <div class="sm-3" >
+    <label style="margin-top: 5%;" for="userName" class="form-label">Ім'я</label>
+    <input type="text"  placeholder="Григорій" class="form-control" id="userName" >
+  </div>
+    <div class="sm-3" >
+        <label  for="userSurname" class="form-label">Прізвище</label>
+        <input type="text"  placeholder="Бойко" class="form-control" id="userSurname" >
+    </div>
+  <div class="sm-3" >
+    <label for="Email" class="form-label">Email</label>
+    <input type="email"  placeholder="example@gmail.com" class="form-control" id="email" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">Ми не будемо передавати вашу електронну адресу третім особам</div>
+  </div>
+  <div class="sm-3">
+    <label for="Phone" class="form-label">Номер телефону</label>
+    <input type="tel" placeholder="0900900900" class="form-control" id="Phone">
+  </div>
+  <div class="sm-3">
+    <label for="Size" class="form-label">Розмір боксу</label>
+    <select class="form-select"  aria-label="Default select example" id="size" >
+    <option selected>Виберіть зі списку</option>
+    <option value="1">Великий</option>
+    <option value="2">Середній</option>
+    <option value="3">Малий</option>
+  </select>
+  </div>
+  <div class="sm-3">
+    <label for="Period" class="form-label">Період бронювання</label>
+    <select class="form-select" aria-label="Default select example" id="Period" >
+    <option selected>Виберіть зі списку</option>
+    <option value="1">1 Місяць</option>
+    <option value="2">2 Місяці</option>
+    <option value="3">3 Місяці</option>
+    <option value="4">4 Місяці</option>
+    <option value="5">5 Місяців</option>
+    <option value="6">6 Місяців</option>
+    <option value="7">7 Місяць</option>
+    <option value="8">8 Місяців</option>
+    <option value="9">9 Місяців</option>
+    <option value="10">10 Місяців</option>
+    <option value="11">11 Місяців</option>
+    <option value="12">12 Місяців</option>
+  </select>
+    <div id="timeHelp" class="form-text">Мінімальне бронювання 1 місяць , максимальне 1 рік </div>
+  </div>
+  <div class="sm-3">
+    <label for="wishes" class="form-label">Додаткові побажання</label>
+    <textarea type="text" placeholder="" rows="4" class="form-control" id="wishes"></textarea>
+    <div id="wishesHelp" class="form-text">Все що завгодно (до 200 символів)</div>
+  </div>
+
+<div class="sm-3 form-check">
+  <input type="checkbox" class="form-check-input" id="check">
+  <label class="form-check-label" for="check">Даю згоду на обробку персональних данних</label>
+</div>
+
+</form>
+<button type="" class="btn btn-primary" id="submitbtn" style="margin-bottom: 5%;">Бронювати</button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer th:replace="~{footer}"></footer>
+<!-- Footer -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.0.0/mdb.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/js-snackbar.js"></script>
+<script src="js/booking_main.js"></script>
+</body>
+</html>

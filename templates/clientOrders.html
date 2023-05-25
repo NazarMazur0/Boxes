@@ -1,0 +1,69 @@
+<div class="container bg-primary t-5 border border-1 border-primary rounded">
+  <div class="row t-5">
+    <div class="col col-lg-6">
+      <div class="container-sm text-light rounded m-2">
+        <div class="row">
+          <div class="col">
+            <span class="code">Код</span>
+          </div>
+          <div class="col">
+            <span class="size">Розмір</span>
+          </div>
+          <div class="col">
+            <span class="price">Сума</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col col-lg-6">
+      <div class="container-sm text-light rounded m-2">
+        <div class="row">
+          <div class="col">
+            <span class="period">Період бронювання</span>
+          </div>
+          <div class="col">
+            <span class="status">Статус</span>
+          </div>
+          <div class="col">
+            <span class="address">Адреса</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div th:each="order : ${clientOrders}" th:id="${order.code} + 'Container'" style="background:#35455e" class="container  t-5 border border-1 border-info rounded">
+  <div class="row t-5">
+    <div class="col lg-4">
+      <div class="container-sm  text-light rounded m-2">
+        <div class="row">
+          <div class="col">
+            <span class="code" th:text="${order.code}"></span>
+          </div>
+          <div class="col">
+            <span class="size" th:text="${order.size}"></span>
+          </div>
+          <div class="col">
+            <span class="price" th:text="${order.sum}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col lg-4">
+      <div class="container-sm  text-light rounded m-2">
+        <div class="row">
+          <div class="col">
+            <span class="period" th:text="${order.startDate.month + 1}/${order.startDate.date}/${order.startDate.year + 1900} + ' ' + ${order.endDate.month + 1}/${order.endDate.date}/${order.endDate.year + 1900}"></span>
+          </div>
+          <div class="col">
+            <span class="status" th:text="${order.status}"></span>
+          </div>
+          <div class="col">
+            <span class="address" th:text="${order.locationAddress}"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
