@@ -58,7 +58,7 @@ function validateEmail(){
 
 function requestEmailLogin(){
     let request = $.ajax({
-        url: "http://localhost:8080/api/clientLogin",
+        url: window.location.origin+"/api/clientLogin",
         type: "POST",
         contentType:"text/plain",
         dataType: "html",
@@ -141,7 +141,7 @@ function validateCode(){
 }
 function requestEmailCodeLogin(){
     let request = $.ajax({
-        url: "http://localhost:8080/api/clientLoginWithCode",
+        url: window.location.origin+"/api/clientLoginWithCode",
         type: "POST",
         contentType:"application/json",
         dataType: "html",
@@ -171,7 +171,7 @@ function callbackEmailCodeLogin(response){
     });
         mainContainer.hide(350)
         let request = $.ajax({
-            url: "http://localhost:8080/api/getClientOrders",
+            url: window.location.origin+"/api/getClientOrders",
             type: "POST",
             contentType:"application/json",
             dataType: "html",

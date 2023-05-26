@@ -1,5 +1,6 @@
 package com.boxes.Service.components
 import com.boxes.Service.models.*
+import org.springframework.stereotype.Component
 import java.lang.NullPointerException
 import java.sql.Date
 import java.sql.DriverManager
@@ -7,7 +8,7 @@ import java.util.Date as utilDate
 import java.util.NoSuchElementException
 import java.sql.Date as sqlDate
 
-
+@Component
 object DatabaseDriver {
     private const val url = "jdbc:sqlserver://192.168.56.102;databaseName=Boxes;user=Nazar;password=qqw12;"
 

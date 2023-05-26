@@ -81,7 +81,7 @@ function validatePassword() {
 }
 function requestLogin(){
     let request = $.ajax({
-        url: "http://localhost:8080/api/employeeLogin",
+        url: window.location.origin+"/api/employeeLogin",
         type: "POST",
         contentType:"application/json",
         dataType: "html",
@@ -106,7 +106,7 @@ const mainContainer = $("#mainContainer");
 let oldResponse
 function requestNewOrders(){
     let request = $.ajax({
-        url: "http://localhost:8080/api/getNewOrders",
+        url: window.location.origin+"/api/getNewOrders",
         type: "POST",
         contentType:"application/json",
         dataType: "html",
@@ -166,7 +166,7 @@ function acceptOrder(code){
     orderData.employeePhone=loginData.phone
     orderData.employeePassword=loginData.password
     let request = $.ajax({
-        url: "http://localhost:8080/api/acceptOrder",
+        url: window.location.origin+"/api/acceptOrder",
         type: "POST",
         contentType:"application/json",
         dataType: "html",
@@ -209,7 +209,7 @@ function denyOrder(code){
     orderData.employeePhone=loginData.phone
     orderData.employeePassword=loginData.password
     let request = $.ajax({
-        url: "http://localhost:8080/api/denyOrder",
+        url: window.location.origin+"/api/denyOrder",
         type: "POST",
         contentType:"application/json",
         dataType: "html",

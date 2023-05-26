@@ -1,6 +1,7 @@
 package com.boxes.Service.services
 
 import com.boxes.Service.components.DatabaseDriver
+import com.boxes.Service.components.MailSender
 import com.boxes.Service.models.Box
 import com.boxes.Service.models.BoxBooking
 import com.boxes.Service.models.Client
@@ -34,9 +35,6 @@ class BookingService : Booking {
         localEndDate=  localEndDate.plusDays(1).plusMonths(booking.period.toLong())
 
         sqlEndDate=Date.valueOf(localEndDate)
-        println(sqlEndDate)
-        println(localEndDate.toString())
-        println(sqlEndDate)
 
         try {
             DatabaseDriver.findClientByEmail(Client(booking.name, booking.surname, booking.email, booking.phone, false))
@@ -46,20 +44,28 @@ class BookingService : Booking {
             clientExist = false
         }
         if (clientExist) {
+            try {
+                DatabaseDriver.newOrder(booking.email, booking.code,sqlEndDate, booking.period)
+                DatabaseDriver.updateBoxAsBooked(booking.code)
+                MailSender.sendSuccessfullBookingMassage(booking.email,booking.code)
+                return "Success"
 
-            DatabaseDriver.newOrder(booking.email, booking.code,sqlEndDate, booking.period)
-            DatabaseDriver.updateBoxAsBooked(booking.code)
-            return "Success"
+            } catch (e:Exception){
+                println(e.message)
+                return ""
+            }
+
         } else {
-            println("This is else branch")
             try {
                println(DatabaseDriver.insertClient(Client(booking.name, booking.surname, booking.email, booking.phone, false)))
 
             } catch (e: NoSuchElementException) {
                 println("2ndCath > ${e.message}")
+                return ""
             }
             DatabaseDriver.newOrder(booking.email, booking.code, sqlEndDate, booking.period)
             DatabaseDriver.updateBoxAsBooked(booking.code)
+            MailSender.sendSuccessfullBookingMassage(booking.email,booking.code)
             return "Success"
         }
     }
