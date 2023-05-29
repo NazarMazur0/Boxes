@@ -1,0 +1,69 @@
+USE master
+GO
+IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = 'BOXES_COPY')
+BEGIN
+    CREATE DATABASE  BOXES_COPY 
+END
+
+GO
+USE BOXES_COPY
+GO
+IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'ORDERS')
+BEGIN
+    CREATE TABLE ORDERS (
+	[ID] [int] NOT NULL,
+	[CLIENTID] [int] NOT NULL,
+	[EMLOYEEID] [int] NOT NULL,
+	[BOXID] [int] NOT NULL,
+	[START_DATE] [date] NOT NULL,
+	[END_DATE] [date] NOT NULL,
+	[SUM] [int] NOT NULL,
+	[STATUS] [nchar](20) NULL)
+END
+
+GO
+
+IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'CLIENTS')
+BEGIN
+ CREATE TABLE [dbo].[CLIENTS](
+	[ID] [int] NOT NULL,
+	[NAME] [nchar](30) NULL,
+	[SURNAME] [nchar](30) NULL,
+	[PHONE] [varchar](30) NOT NULL,
+	[REGULAR] [binary](1) NOT NULL,
+	[EMAIL] [varchar](50) NULL)
+END
+
+IF NOT EXISTS (SELECT name FROM sys.tables WHERE name = 'BOXES')
+BEGIN
+CREATE TABLE [dbo].[BOXES](
+	[ID] [int] NOT NULL,
+	[CODE] [nvarchar](255) NOT NULL,
+	[SIZE] [nvarchar](255) NOT NULL,
+	[BOOKED] [binary](1) NOT NULL,
+	[Price] [int] NOT NULL,
+	[LocationID] [int] NOT NULL)
+END
+
+
+
+GO
+INSERT into ORDERS VALUES(
+(SELECT *
+FROM BOXES.dbo.ORDERS 
+))
+GO
+
+INSERT into CLIENTS VALUES(
+(SELECT *
+FROM BOXES.dbo.CLIENTS 
+))
+
+GO
+
+INSERT into BOXES VALUES(
+(SELECT *
+FROM BOXES.dbo.BOXES 
+))
+
+
